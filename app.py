@@ -6,6 +6,7 @@ def create_app():
     app.register_blueprint(pages)
     return app
 
-app = create_app()
 
-app.run(debug = True)
+#app = create_app()
+
+#app.run(debug = True)
