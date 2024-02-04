@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+    <section class="habit-list">
+        {% for habit in habits %}
+            {% set completed = habit in completions %}
+            {% if completed %}
+                <div class="habit completed">
+                    <p class="habit__name">
+                        {{ habit }}
+                    </p>
+                    <img class="habit__icon" src="/static/checkmark.svg" alt="the checkmark icon">
+                </div>
+            {% else %}
+                <div class="habit">
+                    <form method="POST" class="habit__form" action="{{url_for('habits.complete')}}">
+                        <input type="hidden" name="habitName" value="{{habit}}">
+                        <input type="hidden" name="date" value="{{selected_date}}">
+                        <button type="submit" class="habit__button">
+                            {{habit}}
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endblock %}
